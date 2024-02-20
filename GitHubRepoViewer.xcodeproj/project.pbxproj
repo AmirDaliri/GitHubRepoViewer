@@ -22,13 +22,16 @@
 		8B943E7A2B85456800BE06A1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E792B85456800BE06A1 /* NetworkManagerTests.swift */; };
 		8BC772172B83DA9600267BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772162B83DA9600267BDF /* AppDelegate.swift */; };
 		8BC772192B83DA9600267BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772182B83DA9600267BDF /* SceneDelegate.swift */; };
-		8BC7721B2B83DA9600267BDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7721A2B83DA9600267BDF /* ViewController.swift */; };
+		8BC7721B2B83DA9600267BDF /* RepositoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7721A2B83DA9600267BDF /* RepositoriesVC.swift */; };
 		8BC772212B83DA9600267BDF /* GitHubRepoViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7721F2B83DA9600267BDF /* GitHubRepoViewer.xcdatamodeld */; };
 		8BC772232B83DA9700267BDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BC772222B83DA9700267BDF /* Assets.xcassets */; };
 		8BC772262B83DA9700267BDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC772242B83DA9700267BDF /* LaunchScreen.storyboard */; };
 		8BC772312B83DA9700267BDF /* GitHubRepoViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772302B83DA9700267BDF /* GitHubRepoViewerTests.swift */; };
 		8BC7723B2B83DA9700267BDF /* GitHubRepoViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7723A2B83DA9700267BDF /* GitHubRepoViewerUITests.swift */; };
 		8BC7723D2B83DA9700267BDF /* GitHubRepoViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7723C2B83DA9700267BDF /* GitHubRepoViewerUITestsLaunchTests.swift */; };
+		8BF3E55A2B85495200914862 /* RepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3E5592B85495200914862 /* RepositoriesViewModel.swift */; };
+		8BF3E55D2B854BDD00914862 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF3E55C2B854BDD00914862 /* SnapKit */; };
+		8BF3E5602B854BF700914862 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF3E55F2B854BF700914862 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +68,7 @@
 		8BC772132B83DA9600267BDF /* GitHubRepoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC772162B83DA9600267BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BC772182B83DA9600267BDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8BC7721A2B83DA9600267BDF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8BC7721A2B83DA9600267BDF /* RepositoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesVC.swift; sourceTree = "<group>"; };
 		8BC772202B83DA9600267BDF /* GitHubRepoViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubRepoViewer.xcdatamodel; sourceTree = "<group>"; };
 		8BC772222B83DA9700267BDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BC772252B83DA9700267BDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		8BC772362B83DA9700267BDF /* GitHubRepoViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubRepoViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC7723A2B83DA9700267BDF /* GitHubRepoViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoViewerUITests.swift; sourceTree = "<group>"; };
 		8BC7723C2B83DA9700267BDF /* GitHubRepoViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8BF3E5592B85495200914862 /* RepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF3E5602B854BF700914862 /* Kingfisher in Frameworks */,
+				8BF3E55D2B854BDD00914862 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +168,8 @@
 				8BC772182B83DA9600267BDF /* SceneDelegate.swift */,
 				8B943E6A2B853F5E00BE06A1 /* Network Layer */,
 				8B943E532B853E9B00BE06A1 /* Model */,
-				8BC7721A2B83DA9600267BDF /* ViewController.swift */,
+				8BC7721A2B83DA9600267BDF /* RepositoriesVC.swift */,
+				8BF3E5592B85495200914862 /* RepositoriesViewModel.swift */,
 				8BC772222B83DA9700267BDF /* Assets.xcassets */,
 				8BC772242B83DA9700267BDF /* LaunchScreen.storyboard */,
 				8BC772272B83DA9700267BDF /* Info.plist */,
@@ -206,6 +213,10 @@
 			dependencies = (
 			);
 			name = GitHubRepoViewer;
+			packageProductDependencies = (
+				8BF3E55C2B854BDD00914862 /* SnapKit */,
+				8BF3E55F2B854BF700914862 /* Kingfisher */,
+			);
 			productName = GitHubRepoViewer;
 			productReference = 8BC772132B83DA9600267BDF /* GitHubRepoViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -278,6 +289,10 @@
 				Base,
 			);
 			mainGroup = 8BC7720A2B83DA9600267BDF;
+			packageReferences = (
+				8BF3E55B2B854BDD00914862 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8BF3E55E2B854BF700914862 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 8BC772142B83DA9600267BDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -330,7 +345,8 @@
 				8B943E712B853F5E00BE06A1 /* NetworkManager.swift in Sources */,
 				8B943E702B853F5E00BE06A1 /* NetworkServiceProtocol.swift in Sources */,
 				8B943E5A2B853E9B00BE06A1 /* Repositories.swift in Sources */,
-				8BC7721B2B83DA9600267BDF /* ViewController.swift in Sources */,
+				8BF3E55A2B85495200914862 /* RepositoriesViewModel.swift in Sources */,
+				8BC7721B2B83DA9600267BDF /* RepositoriesVC.swift in Sources */,
 				8BC772172B83DA9600267BDF /* AppDelegate.swift in Sources */,
 				8B943E732B853F5E00BE06A1 /* NetworkError.swift in Sources */,
 				8BC772192B83DA9600267BDF /* SceneDelegate.swift in Sources */,
@@ -675,6 +691,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BF3E55B2B854BDD00914862 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		8BF3E55E2B854BF700914862 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BF3E55C2B854BDD00914862 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF3E55B2B854BDD00914862 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		8BF3E55F2B854BF700914862 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF3E55E2B854BF700914862 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8BC7721F2B83DA9600267BDF /* GitHubRepoViewer.xcdatamodeld */ = {
