@@ -12,6 +12,7 @@
 		8B943E5C2B853E9B00BE06A1 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E562B853E9B00BE06A1 /* Repository.swift */; };
 		8B943E5D2B853E9B00BE06A1 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E572B853E9B00BE06A1 /* Owner.swift */; };
 		8B943E5E2B853E9B00BE06A1 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E592B853E9B00BE06A1 /* JsonHelper.swift */; };
+		8B943E762B853F9300BE06A1 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E752B853F9300BE06A1 /* ErrorResponse.swift */; };
 		8BC772172B83DA9600267BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772162B83DA9600267BDF /* AppDelegate.swift */; };
 		8BC772192B83DA9600267BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772182B83DA9600267BDF /* SceneDelegate.swift */; };
 		8BC7721B2B83DA9600267BDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7721A2B83DA9600267BDF /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 		8B943E562B853E9B00BE06A1 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8B943E572B853E9B00BE06A1 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		8B943E592B853E9B00BE06A1 /* JsonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		8B943E752B853F9300BE06A1 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		8BC772132B83DA9600267BDF /* GitHubRepoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC772162B83DA9600267BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BC772182B83DA9600267BDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B943E762B853F9300BE06A1 /* ErrorResponse.swift in Sources */,
 				8B943E5E2B853E9B00BE06A1 /* JsonHelper.swift in Sources */,
 				8B943E5C2B853E9B00BE06A1 /* Repository.swift in Sources */,
 				8B943E5D2B853E9B00BE06A1 /* Owner.swift in Sources */,
