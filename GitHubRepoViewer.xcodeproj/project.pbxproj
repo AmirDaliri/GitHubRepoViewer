@@ -12,6 +12,11 @@
 		8B943E5C2B853E9B00BE06A1 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E562B853E9B00BE06A1 /* Repository.swift */; };
 		8B943E5D2B853E9B00BE06A1 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E572B853E9B00BE06A1 /* Owner.swift */; };
 		8B943E5E2B853E9B00BE06A1 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E592B853E9B00BE06A1 /* JsonHelper.swift */; };
+		8B943E702B853F5E00BE06A1 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E6B2B853F5E00BE06A1 /* NetworkServiceProtocol.swift */; };
+		8B943E712B853F5E00BE06A1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E6C2B853F5E00BE06A1 /* NetworkManager.swift */; };
+		8B943E722B853F5E00BE06A1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E6D2B853F5E00BE06A1 /* Router.swift */; };
+		8B943E732B853F5E00BE06A1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E6E2B853F5E00BE06A1 /* NetworkError.swift */; };
+		8B943E742B853F5E00BE06A1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E6F2B853F5E00BE06A1 /* Endpoint.swift */; };
 		8B943E762B853F9300BE06A1 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943E752B853F9300BE06A1 /* ErrorResponse.swift */; };
 		8BC772172B83DA9600267BDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772162B83DA9600267BDF /* AppDelegate.swift */; };
 		8BC772192B83DA9600267BDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC772182B83DA9600267BDF /* SceneDelegate.swift */; };
@@ -47,6 +52,11 @@
 		8B943E562B853E9B00BE06A1 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8B943E572B853E9B00BE06A1 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		8B943E592B853E9B00BE06A1 /* JsonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		8B943E6B2B853F5E00BE06A1 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		8B943E6C2B853F5E00BE06A1 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8B943E6D2B853F5E00BE06A1 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		8B943E6E2B853F5E00BE06A1 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8B943E6F2B853F5E00BE06A1 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		8B943E752B853F9300BE06A1 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		8BC772132B83DA9600267BDF /* GitHubRepoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubRepoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC772162B83DA9600267BDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +106,7 @@
 				8B943E562B853E9B00BE06A1 /* Repository.swift */,
 				8B943E552B853E9B00BE06A1 /* License.swift */,
 				8B943E572B853E9B00BE06A1 /* Owner.swift */,
+				8B943E752B853F9300BE06A1 /* ErrorResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,6 +117,18 @@
 				8B943E592B853E9B00BE06A1 /* JsonHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		8B943E6A2B853F5E00BE06A1 /* Network Layer */ = {
+			isa = PBXGroup;
+			children = (
+				8B943E6B2B853F5E00BE06A1 /* NetworkServiceProtocol.swift */,
+				8B943E6C2B853F5E00BE06A1 /* NetworkManager.swift */,
+				8B943E6D2B853F5E00BE06A1 /* Router.swift */,
+				8B943E6E2B853F5E00BE06A1 /* NetworkError.swift */,
+				8B943E6F2B853F5E00BE06A1 /* Endpoint.swift */,
+			);
+			path = "Network Layer";
 			sourceTree = "<group>";
 		};
 		8BC7720A2B83DA9600267BDF = {
@@ -133,6 +156,7 @@
 			children = (
 				8BC772162B83DA9600267BDF /* AppDelegate.swift */,
 				8BC772182B83DA9600267BDF /* SceneDelegate.swift */,
+				8B943E6A2B853F5E00BE06A1 /* Network Layer */,
 				8B943E532B853E9B00BE06A1 /* Model */,
 				8BC7721A2B83DA9600267BDF /* ViewController.swift */,
 				8BC772222B83DA9700267BDF /* Assets.xcassets */,
@@ -291,13 +315,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B943E762B853F9300BE06A1 /* ErrorResponse.swift in Sources */,
+				8B943E742B853F5E00BE06A1 /* Endpoint.swift in Sources */,
 				8B943E5E2B853E9B00BE06A1 /* JsonHelper.swift in Sources */,
 				8B943E5C2B853E9B00BE06A1 /* Repository.swift in Sources */,
 				8B943E5D2B853E9B00BE06A1 /* Owner.swift in Sources */,
 				8BC772212B83DA9600267BDF /* GitHubRepoViewer.xcdatamodeld in Sources */,
+				8B943E722B853F5E00BE06A1 /* Router.swift in Sources */,
+				8B943E712B853F5E00BE06A1 /* NetworkManager.swift in Sources */,
+				8B943E702B853F5E00BE06A1 /* NetworkServiceProtocol.swift in Sources */,
 				8B943E5A2B853E9B00BE06A1 /* Repositories.swift in Sources */,
 				8BC7721B2B83DA9600267BDF /* ViewController.swift in Sources */,
 				8BC772172B83DA9600267BDF /* AppDelegate.swift in Sources */,
+				8B943E732B853F5E00BE06A1 /* NetworkError.swift in Sources */,
 				8BC772192B83DA9600267BDF /* SceneDelegate.swift in Sources */,
 				8B943E5B2B853E9B00BE06A1 /* License.swift in Sources */,
 			);
