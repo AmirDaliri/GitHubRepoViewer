@@ -10,11 +10,11 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
+# xcuserdata/
 
 # Swift Package Manager
 .build/
-.swiftpm/
+# .swiftpm/
 
 # CocoaPods
 Pods/
