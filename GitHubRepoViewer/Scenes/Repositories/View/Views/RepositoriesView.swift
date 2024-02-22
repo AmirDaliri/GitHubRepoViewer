@@ -43,7 +43,8 @@ class RepositoriesView: UIView {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(segmentController.snp.bottom).offset(32)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeArea.bottom)
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    private let navigationController = UINavigationController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,11 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // Create an instance of your view controller
-        let viewController = UINavigationController(rootViewController: RepositoriesVC())
+//        let viewController = UINavigationController(rootViewController: RepositoriesVC())
         
         // Create a window with the window scene and set the root view controller
+//        window = UIWindow(windowScene: windowScene)
+//        window?.rootViewController = MainTabBarController()//viewController
+//        window?.makeKeyAndVisible()
+        
+        
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = viewController
+        navigationController.setViewControllers([MainTabBarController()], animated: true)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
