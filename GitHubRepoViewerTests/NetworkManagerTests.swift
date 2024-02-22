@@ -123,12 +123,12 @@ class NetworkManagerTests: XCTestCase {
     
     func testSearchRepositorySuccess() {
         // Arrange
-        let expectedRepositories = Repositories(/* Add your expected repositories */)
-        mockService.repositoriesResult = .success(expectedRepositories)
+        let expectedRepositories = SearchedRepositories(/* Add your expected repositories */)
+        mockService.searchRepositoryResult = .success(expectedRepositories)
         
         // Act
         let expectation = XCTestExpectation(description: "Search repository")
-        var receivedRepositories: Repositories?
+        var receivedRepositories: SearchedRepositories?
         var receivedError: NetworkError?
         
         mockService.searchRepository(query: RepositoryQuery(organization: .algorand, page: 1, perPage: 10))

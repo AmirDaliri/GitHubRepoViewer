@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // Create an instance of your view controller
-        let viewController = ViewController()
+        let viewController = UINavigationController(rootViewController: RepositoriesVC())
         
         // Create a window with the window scene and set the root view controller
         window = UIWindow(windowScene: windowScene)

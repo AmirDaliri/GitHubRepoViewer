@@ -18,7 +18,7 @@ protocol NetworkServiceProtocol {
     /// Function to search for repositories.
     /// - Parameter query: The query parameters for searching repositories.
     /// - Returns: A publisher that emits a `Repositories` object or a `NetworkError`. The use of `AnyPublisher` allows for flexibility in the underlying implementation, making the protocol adaptable to different networking strategies.
-    func searchRepository(query: RepositoryQuery) -> AnyPublisher<Repositories, NetworkError>
+    func searchRepository(query: RepositoryQuery) -> AnyPublisher<SearchedRepositories, NetworkError>
     
     /// Function to fetch details of a specific repository.
     /// - Parameters:

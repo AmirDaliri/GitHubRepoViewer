@@ -12,6 +12,17 @@ enum Organization: String {
     case algorand
     case perawallet
     case algorandFoundation
+    
+    static func getValueFromInt(int: Int) -> Self {
+        switch int {
+        case 0:
+            return .algorand
+        case 1:
+            return .perawallet
+        default:
+            return .algorandFoundation
+        }
+    }
 }
 
 /// Struct representing a query for fetching repositories from a specific organization.
@@ -19,7 +30,14 @@ struct RepositoryQuery {
     let organization: Organization
     let page: Int
     let perPage: Int
-    let searchTerm: String? = nil
+    var searchTerm: String? = nil
+    
+    init(organization: Organization, page: Int, perPage: Int, searchTerm: String? = nil) {
+        self.organization = organization
+        self.page = page
+        self.perPage = perPage
+        self.searchTerm = searchTerm
+    }
 }
 
 /// Enum representing the various network endpoints used within the app.
@@ -72,7 +90,7 @@ extension Router: Endpoint {
         if let query = query {
             var queryItems = [URLQueryItem]()
             if let searchTerm = query.searchTerm {
-                queryItems.append(URLQueryItem(name: "q", value: searchTerm))
+                queryItems.append(URLQueryItem(name: "q", value: "\(query.organization.rawValue)/\(searchTerm)"))
             }
             queryItems.append(URLQueryItem(name: "page", value: "\(query.page)"))
             queryItems.append(URLQueryItem(name: "per_page", value: "\(query.perPage)"))
@@ -83,7 +101,13 @@ extension Router: Endpoint {
             fatalError("Failed to construct URL")
         }
         
-        return URLRequest(url: url)
+        var request = URLRequest(url: url)
+          // Add authentication header here
+          // Replace "YOUR_TOKEN" with your actual GitHub personal access token
+          request.addValue("token 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", forHTTPHeaderField: "Authorization")
+//        ba6bb5cf79147243c2cdfb5f25c91b895f149671
+        
+        return request
     }
 
 }

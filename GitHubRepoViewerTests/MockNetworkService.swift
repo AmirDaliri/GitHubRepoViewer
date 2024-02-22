@@ -27,6 +27,7 @@ import Foundation
 class MockNetworkService: NetworkServiceProtocol {
     // Properties to customize the mock responses
     var repositoriesResult: Result<Repositories, NetworkError>
+    var searchRepositoryResult: Result<SearchedRepositories, NetworkError>!
     var errorResponse: ErrorResponse?
     
     /**
@@ -38,9 +39,11 @@ class MockNetworkService: NetworkServiceProtocol {
      */
     init(
         repositoriesResult: Result<Repositories, NetworkError> = .success(Repositories.init()),
+        searchRepositoryResult: Result<SearchedRepositories, NetworkError> = .success(SearchedRepositories.init()),
         errorResponse: ErrorResponse? = nil
     ) {
         self.repositoriesResult = repositoriesResult
+        self.searchRepositoryResult = searchRepositoryResult
         self.errorResponse = errorResponse
     }
 
@@ -71,10 +74,24 @@ class MockNetworkService: NetworkServiceProtocol {
 
      - Returns: A publisher that emits the result of searching for a repository.
      */
-    func searchRepository(query: RepositoryQuery) -> AnyPublisher<Repositories, NetworkError> {
+    func searchRepository(query: RepositoryQuery) -> AnyPublisher<SearchedRepositories, NetworkError> {
         // Implementation simulating the network request and response.
         // For simplicity, let's return the same result as fetchRepositories.
-        return fetchRepositories(query: query)
+        return Future<SearchedRepositories, NetworkError> { promise in
+            if let errorResponse = self.errorResponse {
+                promise(.failure(errorResponse.toNetworkError()))
+            } else {
+                switch self.searchRepositoryResult {
+                case .success(let repositories):
+                    promise(.success(repositories))
+                case .failure(let error):
+                    promise(.failure(error))
+                case .none:
+                    fatalError("Search repository result was not set in mock")
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 
     /**
