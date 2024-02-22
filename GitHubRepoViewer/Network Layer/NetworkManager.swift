@@ -36,7 +36,7 @@ class NetworkManager: NetworkServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func searchRepository(query: RepositoryQuery) -> AnyPublisher<Repositories, NetworkError> {
+    func searchRepository(query: RepositoryQuery) -> AnyPublisher<SearchedRepositories, NetworkError> {
         let request = Router.searchRepository(query: query).urlRequest
         
         return URLSession.shared.dataTaskPublisher(for: request)
