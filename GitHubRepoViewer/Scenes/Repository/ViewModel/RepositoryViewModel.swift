@@ -99,28 +99,4 @@ class RepositoryViewModel {
             })
             .store(in: &cancellables)
     }
-
-    /// Determines the error message to display for the given network error.
-    /// - Parameter error: The network error.
-    /// - Returns: The error message.
-    func determineErrorMessage(for error: NetworkError) -> String {
-        switch error {
-        case .invalidURL, .invalidResponse, .noData:
-            return "A network error occurred. Please try again."
-        case .underlyingError(let underlyingError):
-            return underlyingError.localizedDescription
-        case .decodingError(let decodingError):
-            return decodingError.localizedDescription
-        case .notFound:
-            return "not Found"
-        case .otherError(let message):
-            return message
-        case .serverError(let statusCode):
-            return "server error with \(statusCode) status code."
-        case .unauthorizedAccess:
-            return "unauthorized access to the GitHub API."
-        case .rateLimitExceeded:
-            return "rate limit exceeded error."
-        }
-    }
 }

@@ -40,7 +40,6 @@ class RepositoryVC: UIViewController, Loading {
     }
     
     // MARK: - Lifecycle Methods
-    
     private func setupBindings() {
         // Existing binding setup remains unchanged
         bindViewModel()
@@ -72,7 +71,8 @@ class RepositoryVC: UIViewController, Loading {
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
-                self?.handleNetworkError(error)
+                guard let self else { return }
+                error.handleNetworkError(on: self)
             }
             .store(in: &cancellables)
         
@@ -88,19 +88,5 @@ class RepositoryVC: UIViewController, Loading {
                 }
             }
             .store(in: &cancellables)
-    }
-}
-
-// MARK: - Error Handler
-extension RepositoryVC {
-    // Documented error handling methods
-    /// Handles the given network error.
-    /// - Parameter error: The network error to handle.
-    private func handleNetworkError(_ error: NetworkError) {
-        // Handle the error, e.g., show an alert
-        let message = viewModel.determineErrorMessage(for: error)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }

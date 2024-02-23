@@ -5,7 +5,7 @@
 //  Created by Amir Daliri on 19.02.2024.
 //
 
-import Foundation
+import UIKit
 
 // Enumeration defining various types of network errors.
 // This enumeration provides a comprehensive list of errors that could occur during network operations, aiding in debugging and error handling.
@@ -69,6 +69,44 @@ enum NetworkError: Error, Equatable {
         // For all other cases, return false.
         default:
             return false
+        }
+    }
+}
+
+// MARK: - Alert Error Handler
+extension NetworkError {
+    // Documented error handling methods
+    /// Handles the given network error.
+    /// - Parameter error: The network error to handle.
+    func handleNetworkError(on viewController: UIViewController) {
+        // Handle the error, e.g., show an alert
+        let message = determineErrorMessage()
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        viewController.present(alert, animated: true)
+    }
+    
+    /// Determines the error message to display for the given network error.
+    /// - Parameter error: The network error.
+    /// - Returns: The error message.
+    private func determineErrorMessage() -> String {
+        switch self {
+        case .invalidURL, .invalidResponse, .noData:
+            return "A network error occurred. Please try again."
+        case .underlyingError(let underlyingError):
+            return underlyingError.localizedDescription
+        case .decodingError(let decodingError):
+            return decodingError.localizedDescription
+        case .notFound:
+            return "not Found"
+        case .otherError(let message):
+            return message
+        case .serverError(let statusCode):
+            return "server error with \(statusCode) status code."
+        case .unauthorizedAccess:
+            return "unauthorized access to the GitHub API."
+        case .rateLimitExceeded:
+            return "rate limit exceeded error."
         }
     }
 }
