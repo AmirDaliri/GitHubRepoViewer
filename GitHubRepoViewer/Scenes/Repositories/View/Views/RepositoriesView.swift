@@ -9,12 +9,12 @@ import UIKit
 import SnapKit
 
 class RepositoriesView: UIView {
-    
-    private(set) var segmentController = UISegmentedControl()
-    private(set) var tableView = UITableView()    
-    private(set) var searchController = UISearchController(searchResultsController: nil)
-    private(set) var refreshControl = UIRefreshControl()
 
+    lazy private(set) var segmentController = UISegmentedControl()
+    lazy private(set) var tableView = UITableView()
+    lazy private(set) var searchController = UISearchController(searchResultsController: nil)
+    lazy private(set) var refreshControl = UIRefreshControl()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initializeUI()

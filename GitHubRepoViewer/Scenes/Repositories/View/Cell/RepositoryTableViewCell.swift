@@ -9,13 +9,13 @@ import UIKit
 
 class RepositoryTableViewCell: UITableViewCell {
     
-    private(set) var nameLabel = UILabel()
-    private(set) var descriptionLabel = UILabel()
-    private(set) var starView = ImageWithCountView()
-    private(set) var forkView = ImageWithCountView()
-    private(set) var watchView = ImageWithCountView()
-    private(set) var circleLabel = UILabel()
-    private(set) var languageLabel = UILabel()
+    lazy private(set) var nameLabel = UILabel()
+    lazy private(set) var descriptionLabel = UILabel()
+    lazy private(set) var starView = ImageWithCountView()
+    lazy private(set) var forkView = ImageWithCountView()
+    lazy private(set) var watchView = ImageWithCountView()
+    lazy private(set) var circleLabel = UILabel()
+    lazy private(set) var languageLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -110,7 +110,7 @@ class RepositoryTableViewCell: UITableViewCell {
         forkView.config(icon: UIImage(named: "fork_icon")!, count: repository.forksCount ?? 0)
         watchView.config(icon: UIImage(systemName: "eye")!, count: repository.watchersCount ?? 0)
         languageLabel.text = repository.language
-        circleLabel.text = "●"
+        circleLabel.text = ((repository.language ?? "").isEmpty) ? "" : "●"
         circleLabel.textColor = (repository.language ?? "").languageColor()
     }
 }

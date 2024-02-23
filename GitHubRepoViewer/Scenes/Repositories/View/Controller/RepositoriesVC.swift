@@ -34,7 +34,7 @@ final class RepositoriesVC: UIViewController, Loading {
     init(viewModel: RepositoriesViewModel = RepositoriesViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        bindViewModel()
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -45,9 +45,11 @@ final class RepositoriesVC: UIViewController, Loading {
     // MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupBindings()
         viewModel.loadRepositories(organization: getOrganizationBySegmentIndex())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupUI()
     }
     
@@ -82,7 +84,8 @@ final class RepositoriesVC: UIViewController, Loading {
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
-                self?.handleNetworkError(error)
+                guard let self else { return }
+                error.handleNetworkError(on: self)
             }
             .store(in: &cancellables)
         
@@ -149,20 +152,27 @@ extension RepositoriesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier, for: indexPath) as! RepositoryTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell else {
+            return UITableViewCell()
+        }
         cell.configure(with: viewModel.repositories[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO:  Handle selection of table view row
+        let detailViewController = RepositoryVC(viewModel: RepositoryViewModel.init(repository: viewModel.repositories[indexPath.row]))
+        detailViewController.hidesBottomBarWhenPushed = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
 }
-
+// TODO:  Implement Last item loaded
 // MARK: - UITableViewDataSourcePrefetching
 extension RepositoriesVC: UITableViewDataSourcePrefetching {
     // Documented UITableViewDataSourcePrefetching methods
@@ -182,20 +192,6 @@ extension RepositoriesVC: UITableViewDataSourcePrefetching {
                 viewModel.loadNextPage(organization: getOrganizationBySegmentIndex())
             }
         }
-    }
-}
-
-// MARK: - Error Handler
-extension RepositoriesVC {
-    // Documented error handling methods
-    /// Handles the given network error.
-    /// - Parameter error: The network error to handle.
-    private func handleNetworkError(_ error: NetworkError) {
-        // Handle the error, e.g., show an alert
-        let message = viewModel.determineErrorMessage(for: error)
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }
 

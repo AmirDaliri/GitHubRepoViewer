@@ -49,7 +49,7 @@ struct Repository: Codable, Equatable {
     var openIssuesCount: Int?
     var license: License?
     var allowForking, isTemplate, webCommitSignoffRequired: Bool?
-    var topics: [JSONAny]?
+    var topics: [String]?
     var visibility: String?
     var forks, openIssues, watchers: Int?
     var defaultBranch: String?
@@ -223,7 +223,7 @@ extension Repository {
         allowForking: Bool?? = nil,
         isTemplate: Bool?? = nil,
         webCommitSignoffRequired: Bool?? = nil,
-        topics: [JSONAny]?? = nil,
+        topics: [String]?? = nil,
         visibility: String?? = nil,
         forks: Int?? = nil,
         openIssues: Int?? = nil,

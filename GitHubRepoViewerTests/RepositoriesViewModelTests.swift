@@ -161,7 +161,7 @@ class RepositoriesViewModelTests: XCTestCase {
     func testSearch_FilterRepositories() {
         let expectation = XCTestExpectation(description: "Search filters repositories")
         let mockService = MockNetworkService()
-        var repo = Repository(id: 1, name: "Match", fullName: "Organization/Match")
+        let repo = Repository(id: 1, name: "Match", fullName: "Organization/Match")
 
         // Set up the mock service to return a specific repository for a search operation
         mockService.searchRepositoryResult = .success(SearchedRepositories(items: [repo]))

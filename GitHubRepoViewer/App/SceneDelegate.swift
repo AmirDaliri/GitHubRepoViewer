@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         navigationController.setViewControllers([MainTabBarController()], animated: true)
-        window?.rootViewController = navigationController
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
 
