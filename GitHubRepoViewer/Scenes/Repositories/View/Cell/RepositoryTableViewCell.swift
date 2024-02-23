@@ -110,7 +110,7 @@ class RepositoryTableViewCell: UITableViewCell {
         forkView.config(icon: UIImage(named: "fork_icon")!, count: repository.forksCount ?? 0)
         watchView.config(icon: UIImage(systemName: "eye")!, count: repository.watchersCount ?? 0)
         languageLabel.text = repository.language
-        circleLabel.text = "●"
+        circleLabel.text = ((repository.language ?? "").isEmpty) ? "" : "●"
         circleLabel.textColor = (repository.language ?? "").languageColor()
     }
 }

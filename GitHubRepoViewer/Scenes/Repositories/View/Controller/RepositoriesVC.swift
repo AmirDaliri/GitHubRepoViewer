@@ -34,7 +34,7 @@ final class RepositoriesVC: UIViewController, Loading {
     init(viewModel: RepositoriesViewModel = RepositoriesViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        bindViewModel()
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -46,9 +46,13 @@ final class RepositoriesVC: UIViewController, Loading {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupBindings()
         viewModel.loadRepositories(organization: getOrganizationBySegmentIndex())
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        setTabBarVisible(visible: true, animated: true)
     }
     
     // MARK: - Setup Methods
@@ -155,7 +159,12 @@ extension RepositoriesVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO:  Handle selection of table view row
+        let detailViewController = RepositoryVC(viewModel: RepositoryViewModel.init(repository: viewModel.repositories[indexPath.row]))
+        detailViewController.hidesBottomBarWhenPushed = true
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

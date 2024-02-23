@@ -46,6 +46,8 @@ enum Router {
     case fetchRepositories(query: RepositoryQuery)
     case searchRepository(query: RepositoryQuery)
     case fetchRepository(ownerLogin: String, repoName: String)
+    case fetchRedmeObject(ownerLogin: String, repoName: String)
+    case fetchRedme(url: String)
 }
 
 
@@ -66,6 +68,10 @@ extension Router: Endpoint {
             return "search/repositories"
         case .fetchRepository(let ownerLogin, let repoName):
             return "repos/\(ownerLogin)/\(repoName)"
+        case .fetchRedmeObject(ownerLogin: let ownerLogin, repoName: let repoName):
+            return "repos/\(ownerLogin)/\(repoName)/readme"
+        case .fetchRedme:
+            return ""
         }
     }
     
@@ -80,6 +86,10 @@ extension Router: Endpoint {
         case .fetchRepository(let owner, let repoName):
             let path = "repos/\(owner)/\(repoName)"
             return makeURLRequest(path: path)
+        case .fetchRedmeObject:
+            return makeURLRequest(path: self.path)
+        case .fetchRedme(let url):
+            return makeReadmeURLRequest(urlSting: url)
         }
     }
 
@@ -110,4 +120,19 @@ extension Router: Endpoint {
         return request
     }
 
+    
+    private func makeReadmeURLRequest(urlSting: String) -> URLRequest {
+        
+        guard let url = URL(string: urlSting) else {
+            fatalError("Failed to construct URL")
+        }
+
+        var request = URLRequest(url: url)
+          // Add authentication header here
+          // Replace "YOUR_TOKEN" with your actual GitHub personal access token
+          request.addValue("token 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", forHTTPHeaderField: "Authorization")
+//        ba6bb5cf79147243c2cdfb5f25c91b895f149671
+        
+        return request
+    }
 }

@@ -29,6 +29,8 @@ class MockNetworkService: NetworkServiceProtocol {
     var repositoriesResult: Result<Repositories, NetworkError>
     var searchRepositoryResult: Result<SearchedRepositories, NetworkError>!
     var errorResponse: ErrorResponse?
+    var readmeObjectResponse: Result<Readme, NetworkError>
+    var readmeResponse: Result<String, NetworkError>
     
     /**
      Initializes the `MockNetworkService` with custom result values.
@@ -40,10 +42,14 @@ class MockNetworkService: NetworkServiceProtocol {
     init(
         repositoriesResult: Result<Repositories, NetworkError> = .success(Repositories.init()),
         searchRepositoryResult: Result<SearchedRepositories, NetworkError> = .success(SearchedRepositories.init()),
+        readmeObjectResponse: Result<Readme, NetworkError> = .success(Readme.init()),
+        readmeResponse: Result<String, NetworkError> = .success(""),
         errorResponse: ErrorResponse? = nil
     ) {
         self.repositoriesResult = repositoriesResult
         self.searchRepositoryResult = searchRepositoryResult
+        self.readmeObjectResponse = readmeObjectResponse
+        self.readmeResponse = readmeResponse
         self.errorResponse = errorResponse
     }
 
@@ -106,6 +112,31 @@ class MockNetworkService: NetworkServiceProtocol {
             return Just(repository)
             .setFailureType(to: NetworkError.self)
             .eraseToAnyPublisher()
+    }
+    
+    
+    func fetchReadmeObject(for ownerLogin: String, repoName: String) -> AnyPublisher<Readme, NetworkError> {
+        Future<Readme, NetworkError> { promise in
+            switch self.readmeObjectResponse {
+            case .success(let readme):
+                promise(.success(readme))
+            case .failure(let error):
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func fetchReadme(from urlString: String) -> AnyPublisher<String, NetworkError> {
+        Future<String, NetworkError> { promise in
+            switch self.readmeResponse {
+            case .success(let readme):
+                promise(.success(readme))
+            case .failure(let error):
+                promise(.failure(error))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
 

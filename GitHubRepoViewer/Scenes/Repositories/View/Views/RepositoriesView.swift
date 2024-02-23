@@ -9,12 +9,32 @@ import UIKit
 import SnapKit
 
 class RepositoriesView: UIView {
-    
+    // TODO:  Use Lazy
     private(set) var segmentController = UISegmentedControl()
     private(set) var tableView = UITableView()    
     private(set) var searchController = UISearchController(searchResultsController: nil)
     private(set) var refreshControl = UIRefreshControl()
 
+//    // Lazy initialization for deferred loading:
+//    // Improves performance by spreading out initialization cost over time
+//    // and only initializing UI elements when they are actually needed.
+//    lazy private(set) var segmentController = UISegmentedControl()
+//
+//    // Memory efficiency: UI elements are only created when accessed,
+//    // preventing unnecessary memory allocation for elements not used
+//    // in certain scenarios.
+//    lazy private(set) var tableView = UITableView()
+//
+//    // Enables complex initialization that might depend on data not available
+//    // during the initial view loading phase. This approach allows for
+//    // resource-intensive setup to be delayed until it's necessary.
+//    lazy private(set) var searchController = UISearchController(searchResultsController: nil)
+//
+//    // Deferred initialization can also be beneficial for elements like
+//    // UIRefreshControl, which may not be needed immediately,
+//    // improving initial view rendering time.
+//    lazy private(set) var refreshControl = UIRefreshControl()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initializeUI()

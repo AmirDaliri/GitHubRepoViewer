@@ -8,6 +8,28 @@
 import UIKit
 import SnapKit
 
+extension UIViewController {
+    func setTabBarVisible(visible: Bool, animated: Bool) {
+        guard let tabBarController = self.tabBarController else { return }
+
+        if (tabBarController.tabBar.isHidden == !visible) { return }
+
+        let frame = tabBarController.tabBar.frame
+        let offsetY = (visible ? -frame.height : frame.height)
+
+        // animate the tabBar
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                tabBarController.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
+                tabBarController.tabBar.isHidden = !visible
+            }
+        } else {
+            tabBarController.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
+            tabBarController.tabBar.isHidden = !visible
+        }
+    }
+}
+
 extension UITableView {
     /// Sets a message to display when the table view is empty.
     ///
@@ -75,5 +97,88 @@ extension String {
         default:
             return .lightGray
         }
+    }
+}
+
+/// An extension for `UIImageView` to asynchronously load and display an image from a URL string.
+/// It also provides options to show a loading indicator while the image is being downloaded
+/// and to make the image view circular in shape.
+extension UIImageView {
+    
+    /// Loads an image from a specified URL string and optionally displays it as a circle.
+    /// - Parameters:
+    ///   - urlString: The URL string of the image to load. If nil or invalid, the operation is aborted.
+    ///   - showLoadingIndicator: A Boolean value indicating whether a loading indicator should be shown while the image is loading. Defaults to `true`.
+    ///   - makeCircle: A Boolean value indicating whether the image view should be made circular. Defaults to `true`.
+    ///
+    /// This function first checks if the image is cached and uses the cached image if available.
+    /// If the image is not in the cache, it proceeds to download the image from the URL,
+    /// optionally displaying a loading indicator during the download.
+    /// After the image is downloaded, it is cached for future use.
+    /// If `makeCircle` is set to true, the image view is made circular after the image is set.
+    func loadImage(from urlString: String?, showLoadingIndicator: Bool = true, makeCircle: Bool = true) {
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            print("Invalid URL or nil urlString")
+            return
+        }
+
+        let cache = URLCache.shared
+        let request = URLRequest(url: url)
+
+        // Check if the image is already cached
+        if let cachedResponse = cache.cachedResponse(for: request),
+           let image = UIImage(data: cachedResponse.data) {
+            self.image = image
+            if makeCircle {
+                self.makeCircular()
+            }
+            return
+        }
+
+        // Optionally, add a loading indicator
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
+        if showLoadingIndicator {
+            DispatchQueue.main.async {
+                self.addSubview(activityIndicator)
+                activityIndicator.startAnimating()
+            }
+        }
+
+        // Asynchronously download the image
+        Task {
+            do {
+                let (data, response) = try await URLSession.shared.data(from: url)
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.image = image
+                        if makeCircle {
+                            self.makeCircular()
+                        }
+                        if showLoadingIndicator {
+                            activityIndicator.stopAnimating()
+                            activityIndicator.removeFromSuperview()
+                        }
+                    }
+                    // Cache the downloaded data
+                    let cachedData = CachedURLResponse(response: response, data: data)
+                    cache.storeCachedResponse(cachedData, for: request)
+                } else {
+                    print("Error: Data could not be converted to UIImage")
+                }
+            } catch {
+                print("Error downloading image: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    /// Makes the image view circular by setting its `cornerRadius` to half of its height.
+    /// This method should be called after the view's layout has been updated to ensure
+    /// the corner radius is correctly calculated.
+    private func makeCircular() {
+        self.setNeedsLayout()
+        self.layoutIfNeeded() // Force layout update to get accurate frame size
+        self.layer.cornerRadius = self.frame.height / 2
+        self.clipsToBounds = true
     }
 }
