@@ -94,10 +94,41 @@ This project utilizes several third-party libraries and tools to enhance its fun
 
 - **Xcode Cloud**: for enabling automatic testing, archiving, and building workflows.
 
-
 ## Contact
 
 For inquiries, feedback, or issues related to this project, please feel free to contact:
 
 - **LinkedIn**: [Amir Daliri](https://www.linkedin.com/in/amirdalirii/)
 - **Email**: amir.daliri@icloud.com
+
+## Additional Features
+
+In addition to the core features mentioned above, the project includes several other functionalities and design approaches:
+
+1. **Dark Mode Support**: The user interface of the app adapts to the system-wide appearance settings, providing a seamless experience for users who prefer dark mode. The app's UI components are designed with both light and dark mode in mind, ensuring readability and usability in all environments.
+
+2. **Custom UI Components**: The project includes custom UI components and controls tailored to the app's design language and user experience. These components enhance the visual appeal and functionality of the app, providing a unique and engaging interface for users.
+
+3. **Accessibility Features**: Accessibility features are implemented throughout the app to ensure that it is usable by individuals with disabilities. This includes support for Dynamic Type, and other accessibility technologies provided by iOS.
+
+4. **Error Handling and User Feedback**: The app incorporates robust error handling mechanisms to gracefully handle unexpected scenarios and provide meaningful feedback to users. This includes informative error messages, alerts, and UI indicators to guide users through the app's functionality.
+
+5. **Performance Optimization**: The project is optimized for performance to ensure smooth and responsive user interactions, even on older devices or under heavy load. This includes efficient memory management, lazy loading of resources, and other performance optimization techniques.
+
+6. **Continuous Integration and Deployment**: The project is configured with continuous integration (CI) and continuous deployment (CD) pipelines to automate the testing, building, and deployment processes. This ensures that changes to the codebase are thoroughly tested and deployed to production environments with minimal manual intervention.
+
+7. **User Analytics and Monitoring**: The app integrates with analytics and monitoring tools to track user interactions, monitor app performance, and gather insights into user behavior. This data is used to improve the app's usability, identify areas for optimization, and make data-driven decisions for future development.
+
+## Design Approach
+
+The design approach for the project follows the principles of user-centered design (UCD), focusing on understanding the needs and preferences of the target audience and designing solutions that meet those requirements. The user interface (UI) and user experience (UX) of the app are designed with simplicity, clarity, and intuitiveness in mind, ensuring that users can accomplish their tasks efficiently and effectively.
+
+The app's design language adheres to the Apple Human Interface Guidelines (HIG), incorporating familiar UI elements, consistent navigation patterns, and intuitive interactions. Visual elements such as typography, color schemes, and iconography are carefully chosen to create a cohesive and visually appealing interface that aligns with the app's brand identity and user expectations.
+
+User feedback and usability testing are integral parts of the design process, allowing for iterative refinement and improvement based on real-world usage and user feedback. Regular usability testing sessions, user interviews, and feedback collection mechanisms are employed to gather insights, identify pain points, and validate design decisions.
+
+The design approach emphasizes accessibility, inclusivity, and diversity, ensuring that the app is usable and enjoyable by users of all abilities and backgrounds. Accessibility features such as scalable fonts, and high-contrast interfaces are implemented to accommodate users with disabilities and provide a seamless experience for all users.
+
+## Conclusion
+
+The README file provides an overview of the project's features, design approach, and additional functionalities. It serves as a comprehensive guide for developers, stakeholders, and users, offering insights into the project's goals, principles, and implementation details. By documenting the project in the README file, it becomes a valuable resource for understanding, maintaining, and evolving the app over time.
