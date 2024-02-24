@@ -5,8 +5,9 @@
 //  Created by Amir Daliri on 23.02.2024.
 //
 
+import UIKit
 import Combine
-import Foundation
+import CoreData
 
 /// ViewModel for handling repositories data in the application.
 class RepositoryViewModel {
@@ -25,12 +26,16 @@ class RepositoryViewModel {
     /// Published property indicating whether data is being loaded.
     @Published var readme: String? = nil
 
+    @Published var isFavorite: Bool = false
+
+    
     // MARK: - Private Properties
     private var searchSubject = PassthroughSubject<(organization: Organization, searchTerm: String), Never>()
     var cancellables = Set<AnyCancellable>()
     private let networkService: NetworkServiceProtocol
     private var currentPage = 0
     private let repositoriesPerPage = 15
+    private let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     
     // MARK: - Initialization
     
@@ -98,5 +103,52 @@ class RepositoryViewModel {
                 self.readme = stringReadme
             })
             .store(in: &cancellables)
+    }
+    
+    /// Updates the favorite button image based on the favorite status of the repository.
+    /// - Returns: A UIImage representing the favorite button image.
+    func updateFavoriteButtonImage() -> UIImage? {
+        let context =  appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<RepositoryDB> = RepositoryDB.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", repository.id ?? 0)
+
+        do {
+            let count = try context.count(for: fetchRequest)
+            self.isFavorite = count > 0
+            return UIImage(systemName: self.isFavorite ? "star.fill" : "star")
+        } catch {
+            print("Failed to fetch repository from Core Data: \(error)")
+            return nil
+        }
+    }
+    
+    /// Adds or removes the repository from favorites and updates the favorite status.
+    /// - Parameter tabbar: The UITabBar where the badge count needs to be updated.
+    func addToFavorite(tabbar: UITabBar?) {
+        UserDefaults.standard.saveRepository(repository)
+        let context = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<RepositoryDB> = RepositoryDB.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", repository.id ?? 0)
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let existingRepository = results.first {
+                // The repository is already a favorite, remove it from Core Data
+                context.delete(existingRepository)
+                appDelegate.saveContext()
+                self.isFavorite = false
+            } else {
+                // The repository is not a favorite yet, add it to Core Data
+                let newRepository = RepositoryDB(context: context)
+                newRepository.populate(with: repository)
+                appDelegate.saveContext()
+                self.isFavorite = true
+            }
+            // Update the badge count
+            RepositoryDB.updateFavoritesBadge(tabbar: tabbar)
+        } catch {
+            print("Could not fetch or delete the item. \(error)")
+        }
     }
 }

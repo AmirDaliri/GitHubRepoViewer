@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class RepositoryVC: UIViewController, Loading {
-
+    
     // MARK: - Properties
     
     /// Reference to the spinner view used for indicating loading state.
@@ -26,7 +26,7 @@ class RepositoryVC: UIViewController, Loading {
     override func loadView() {
         view = RepositoryView()
     }
-
+    
     /// Initializes the view controller with the specified view model.
     /// - Parameter viewModel: The view model to use.
     init(viewModel: RepositoryViewModel) {
@@ -39,7 +39,16 @@ class RepositoryVC: UIViewController, Loading {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle Methods
+    // MARK: - View Lifecycle Methods    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Create a UIBarButtonItem
+        let barButtonItem = UIBarButtonItem(image: viewModel.updateFavoriteButtonImage(), style: .plain, target: self, action: #selector(addToFavorite))
+        // Add the UIBarButtonItem to the right side of the navigation bar
+        self.navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
     private func setupBindings() {
         // Existing binding setup remains unchanged
         bindViewModel()
@@ -88,5 +97,18 @@ class RepositoryVC: UIViewController, Loading {
                 }
             }
             .store(in: &cancellables)
+        
+        
+        viewModel.$isFavorite
+            .sink { [weak self] isFavorite in
+                let imageName = isFavorite ? "star.fill" : "star"
+                self?.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - coreData Method
+    @objc func addToFavorite() {
+        viewModel.addToFavorite(tabbar: self.tabBarController?.tabBar)
     }
 }
