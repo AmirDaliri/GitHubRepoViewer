@@ -112,12 +112,11 @@ extension Router: Endpoint {
         }
         
         var request = URLRequest(url: url)
-          // Add authentication header here
-          // Replace "YOUR_TOKEN" with your actual GitHub personal access token
-          request.addValue("token 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", forHTTPHeaderField: "Authorization")
-//        ba6bb5cf79147243c2cdfb5f25c91b895f149671
+        // Add authentication header here
+        // Replace "YOUR_TOKEN" with your actual GitHub personal access token and use `return request` instad of `return URLRequest(url: url)`
+        request.addValue("token YOUR_TOKEN", forHTTPHeaderField: "Authorization")
         
-        return request
+        return URLRequest(url: url)
     }
 
     
