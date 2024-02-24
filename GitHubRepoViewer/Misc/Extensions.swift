@@ -9,24 +9,8 @@ import UIKit
 import SnapKit
 
 extension UIViewController {
-    func setTabBarVisible(visible: Bool, animated: Bool) {
-        guard let tabBarController = self.tabBarController else { return }
-
-        if (tabBarController.tabBar.isHidden == !visible) { return }
-
-        let frame = tabBarController.tabBar.frame
-        let offsetY = (visible ? -frame.height : frame.height)
-
-        // animate the tabBar
-        if animated {
-            UIView.animate(withDuration: 0.3) {
-                tabBarController.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
-                tabBarController.tabBar.isHidden = !visible
-            }
-        } else {
-            tabBarController.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
-            tabBarController.tabBar.isHidden = !visible
-        }
+    var appDelegate: AppDelegate {
+        UIApplication.shared.delegate as! AppDelegate
     }
 }
 
@@ -180,5 +164,12 @@ extension UIImageView {
         self.layoutIfNeeded() // Force layout update to get accurate frame size
         self.layer.cornerRadius = self.frame.height / 2
         self.clipsToBounds = true
+    }
+}
+
+extension Array {
+    /// Accesses the element at the specified index if it is within bounds, otherwise returns nil.
+    subscript(safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }

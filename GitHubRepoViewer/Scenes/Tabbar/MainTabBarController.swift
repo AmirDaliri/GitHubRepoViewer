@@ -14,13 +14,14 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabs()
         customizeTabBarAppearance()
+        RepositoryDB.updateFavoritesBadge(tabbar: tabBar)
     }
 
     private func setupTabs() {
         let firstVC = UINavigationController(rootViewController: RepositoriesVC())
         firstVC.tabBarItem = UITabBarItem(title: "Repositories", image: UIImage(systemName: "list.bullet.indent"), tag: 0)
         
-        let secondVC = UINavigationController(rootViewController: FavoritesVC())
+        let secondVC = UINavigationController(rootViewController: FavoritesVC(viewModel: FavoritesViewModel()))
         secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
 
         viewControllers = [firstVC, secondVC]
