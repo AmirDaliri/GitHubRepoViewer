@@ -53,7 +53,7 @@ final class GitHubRepoViewerUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: firstRepositoryCell, handler: nil)
-        waitForExpectations(timeout: 20, handler: nil) // Adjust the timeout based on app's performance
+        waitForExpectations(timeout: 5, handler: nil) // Adjust the timeout based on app's performance
         
         XCTAssert(firstRepositoryCell.exists, "The first repository cell should be visible on the screen.")
     }
