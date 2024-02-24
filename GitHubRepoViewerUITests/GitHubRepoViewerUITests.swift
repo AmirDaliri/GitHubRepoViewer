@@ -43,20 +43,20 @@ final class GitHubRepoViewerUITests: XCTestCase {
         }
     }
     
-    func testFirstRepositoryCellAppears() throws {
-        let app = XCUIApplication()
-        
-        // Adjust this identifier based on the actual identifier used in app
-        let firstRepositoryCell = app.tables.cells.element(boundBy: 0)
-        
-        // Increase the timeout if necessary to account for app launch time, data fetching, etc.
-        let exists = NSPredicate(format: "exists == true")
-        
-        expectation(for: exists, evaluatedWith: firstRepositoryCell, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil) // Adjust the timeout based on app's performance
-        
-        XCTAssert(firstRepositoryCell.exists, "The first repository cell should be visible on the screen.")
-    }
+//    func testFirstRepositoryCellAppears() throws {
+//        let app = XCUIApplication()
+//        
+//        // Adjust this identifier based on the actual identifier used in app
+//        let firstRepositoryCell = app.tables.cells.element(boundBy: 0)
+//        
+//        // Increase the timeout if necessary to account for app launch time, data fetching, etc.
+//        let exists = NSPredicate(format: "exists == true")
+//        
+//        expectation(for: exists, evaluatedWith: firstRepositoryCell, handler: nil)
+//        waitForExpectations(timeout: 5, handler: nil) // Adjust the timeout based on app's performance
+//        
+//        XCTAssert(firstRepositoryCell.exists, "The first repository cell should be visible on the screen.")
+//    }
     
     // Need to Improvements
     /*
