@@ -8,7 +8,7 @@
 import XCTest
 import Combine
 import CoreData
-@testable import GitHubRepoViewer // Import your app module
+@testable import GitHubRepoViewer // Import app module
 
 class FavoritesViewModelTests: XCTestCase {
     

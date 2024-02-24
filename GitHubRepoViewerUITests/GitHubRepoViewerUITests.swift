@@ -36,7 +36,7 @@ final class GitHubRepoViewerUITests: XCTestCase {
     
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
+            // This measures how long it takes to launch application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
@@ -46,14 +46,14 @@ final class GitHubRepoViewerUITests: XCTestCase {
     func testFirstRepositoryCellAppears() throws {
         let app = XCUIApplication()
         
-        // Adjust this identifier based on the actual identifier used in your app
+        // Adjust this identifier based on the actual identifier used in app
         let firstRepositoryCell = app.tables.cells.element(boundBy: 0)
         
         // Increase the timeout if necessary to account for app launch time, data fetching, etc.
         let exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: firstRepositoryCell, handler: nil)
-        waitForExpectations(timeout: 20, handler: nil) // Adjust the timeout based on your app's performance
+        waitForExpectations(timeout: 20, handler: nil) // Adjust the timeout based on app's performance
         
         XCTAssert(firstRepositoryCell.exists, "The first repository cell should be visible on the screen.")
     }
@@ -99,7 +99,7 @@ final class GitHubRepoViewerUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: firstResultCell, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil) // Adjust the timeout based on your app's performance
+        waitForExpectations(timeout: 10, handler: nil) // Adjust the timeout based on app's performance
         
         XCTAssert(firstResultCell.exists, "The search should return at least one repository.")
     }
@@ -112,7 +112,7 @@ final class GitHubRepoViewerUITests: XCTestCase {
         
         let exists = NSPredicate(format: "exists == true")
         expectation(for: exists, evaluatedWith: firstRepositoryCell, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil) // Adjust the timeout based on your app's performance
+        waitForExpectations(timeout: 10, handler: nil) // Adjust the timeout based on app's performance
         
         XCTAssert(firstRepositoryCell.exists, "The first repository cell should exist.")
         firstRepositoryCell.tap()
