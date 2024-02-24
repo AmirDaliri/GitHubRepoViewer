@@ -65,6 +65,10 @@ class RepositoriesView: UIView {
         searchController.searchBar.placeholder = "Search"
         searchController.searchResultsUpdater = searchResultsUpdater
         searchController.delegate = delegate
+        searchController.searchBar.accessibilityTraits = UIAccessibilityTraits.searchField
+        searchController.searchBar.isAccessibilityElement = true
+        searchController.isAccessibilityElement = true
+        
         // Add the search bar to the navigation item
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
