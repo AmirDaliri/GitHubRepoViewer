@@ -7,6 +7,8 @@
 - Mark repositories as favorites for easy access.
 - Search for repositories within an organization.
 - View README files of repositories.
+- Integrates Combine framework for reactive programming and handling asynchronous events.
+- Implements both async throws and Combine network layers for making network requests with different paradigms.
 - Utilizes the MVVM (Model-View-ViewModel) architectural pattern for a clear separation of concerns and easier unit testing.
 - Documented with inline comments for better code readability and maintainability.
 
