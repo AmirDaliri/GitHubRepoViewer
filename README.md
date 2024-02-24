@@ -70,8 +70,6 @@ To use the application:
 3. Explore the functionality, such as searching for repositories, viewing favorites, etc.
 4. Interact with the app according to your needs and preferences.
 
-
-
 ## Contributing
 
 Contributions are welcome! Here's how you can contribute to this project:
@@ -83,6 +81,10 @@ Contributions are welcome! Here's how you can contribute to this project:
 5. Open a pull request
 
 Please make sure to update tests as appropriate.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/AmirDaliri/GitHubRepoViewer/blob/main/LICENSE) file for details.
 
 ## Acknowledgements
 
